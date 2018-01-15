@@ -1,10 +1,66 @@
 package botpackage;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
 public class Pg {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) throws Exception {
+		
+		/* INITIALIZING & INSTANCIATIONS */
+		
+		String pathToGeckoDriver = "/Users/fanilosendrison/eclipse-workspace/Spotify_Bot/geckodriver";
+		
+		
+		
+		/* TEST HTTP CONNEXION */
+	    try {
+	        URL testURL = new URL("https://google.fr");
+	        HttpURLConnection connexion = (HttpURLConnection)testURL.openConnection();
+	        InputStream flux = connexion.getInputStream();
+	        
+	        if (connexion.getResponseCode() == HttpURLConnection.HTTP_OK) {
+	        		System.out.println("Connection status : " + connexion.getResponseMessage() + ".");
+	        }
+	        flux.close(); 
+	        connexion.disconnect();
+	    } 
+	    catch(Exception e) {
+	    		System.out.println("ERROR creating HTTP connection.");
+	    }
+	    
+	    
+	    
+	    
+	    /* SET GECKO DRIVER */
+		System.setProperty("webdriver.gecko.driver", pathToGeckoDriver);
+		
+		
+		
+	    /* LAUNCH FIREFOX PAGE */
+	    FirefoxOptions options = new FirefoxOptions();
+	    WebDriver driver = null;
+		//options.setHeadless(true); // set Firefox headless mode on
+	    try {
+	    		driver = new FirefoxDriver(options);
+	    }
+	    catch(IllegalStateException e1) {
+	    		System.out.println("ERROR : Couldn't locate the GeckoDriver file.");
+	    }
+	    
+	    System.out.println("Loading GeckoDriver : OK.");
+	    driver.manage().window().setSize(new Dimension(1920, 1080)); // manually set the window size to full screen
+	    
+	    
+	    
+		/* CLOSE THE BROWSER */
+		driver.close();
 	}
 
 }
