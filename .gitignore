@@ -1,0 +1,5 @@
+/bin/
+RemoteSystemsTempFiles
+.DS_Store
+*.jar
+geckodriver
