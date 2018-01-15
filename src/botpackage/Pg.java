@@ -59,6 +59,13 @@ public class Pg {
 	    
 	    
 	    
+	    /* CONNEXION GMAIL */
+	    Platform gmailPlatform = new Platform();
+	    gmailPlatform.setStartUrl("https://google.fr");
+	    gmailPlatform.connect(driver);
+	    
+	    
+	    
 		/* CLOSE THE BROWSER */
 		driver.close();
 	}
