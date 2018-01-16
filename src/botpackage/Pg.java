@@ -9,13 +9,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+
 public class Pg {
 
 	public static void main(String[] args) throws Exception {
 		
 		/* INITIALIZING & INSTANCIATIONS */
 		
-		String pathToGeckoDriver = "/Users/fanilosendrison/eclipse-workspace/Spotify_Bot/geckodriver";
+		//String pathToGeckoDriver = "/Users/fanilosendrison/eclipse-workspace/Spotify_Bot/geckodriver";
 		
 		
 		
@@ -36,12 +37,10 @@ public class Pg {
 	    }
 	    
 	    
-	    
+	   
 	    
 	    /* SET GECKO DRIVER */
-		System.setProperty("webdriver.gecko.driver", pathToGeckoDriver);
-		
-		
+		System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/geckodriver");
 		
 	    /* LAUNCH FIREFOX PAGE */
 	    FirefoxOptions options = new FirefoxOptions();
@@ -49,12 +48,13 @@ public class Pg {
 		//options.setHeadless(true); // set Firefox headless mode on
 	    try {
 	    		driver = new FirefoxDriver(options);
+	    		System.out.println("Loading GeckoDriver : OK.");
 	    }
 	    catch(IllegalStateException e1) {
 	    		System.out.println("ERROR : Couldn't locate the GeckoDriver file.");
 	    }
 	    
-	    System.out.println("Loading GeckoDriver : OK.");
+	    
 	    driver.manage().window().setSize(new Dimension(1920, 1080)); // manually set the window size to full screen
 	    
 	    
@@ -67,7 +67,7 @@ public class Pg {
 	    
 	    
 		/* CLOSE THE BROWSER */
-		driver.close();
+		//driver.close();
 	}
 
 }

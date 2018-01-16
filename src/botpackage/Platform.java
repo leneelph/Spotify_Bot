@@ -15,6 +15,7 @@ public class Platform {
 		this.startUrl = startUrl;
 	}
 
+	
 	public Platform(String startUrl) {
 		this.startUrl = startUrl;
 	}
