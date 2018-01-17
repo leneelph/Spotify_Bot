@@ -1,7 +1,10 @@
 package botpackage;
 
+
 import java.io.InputStream;
+
 import java.net.HttpURLConnection;
+
 import java.net.URL;
 
 import org.openqa.selenium.Dimension;
@@ -15,10 +18,6 @@ public class Pg {
 	public static void main(String[] args) throws Exception {
 		
 		/* INITIALIZING & INSTANCIATIONS */
-		
-		//String pathToGeckoDriver = "/Users/fanilosendrison/eclipse-workspace/Spotify_Bot/geckodriver";
-		
-		
 		
 		/* TEST HTTP CONNEXION */
 	    try {
@@ -35,27 +34,26 @@ public class Pg {
 	    catch(Exception e) {
 	    		System.out.println("ERROR creating HTTP connection.");
 	    }
-	    
-	    
 	   
 	    
 	    /* SET GECKO DRIVER */
 		System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/geckodriver");
 		
+		
+		
 	    /* LAUNCH FIREFOX PAGE */
-	    FirefoxOptions options = new FirefoxOptions();
-	    WebDriver driver = null;
-		//options.setHeadless(true); // set Firefox headless mode on
-	    try {
-	    		driver = new FirefoxDriver(options);
-	    		System.out.println("Loading GeckoDriver : OK.");
-	    }
-	    catch(IllegalStateException e1) {
-	    		System.out.println("ERROR : Couldn't locate the GeckoDriver file.");
-	    }
-	    
-	    
-	    driver.manage().window().setSize(new Dimension(1920, 1080)); // manually set the window size to full screen
+		FirefoxOptions options = new FirefoxOptions();
+  	    WebDriver driver = null;
+  		//options.setHeadless(true); // set Firefox headless mode on
+  	    try {
+  	    		driver = new FirefoxDriver(options);
+ 	    		System.out.println("Loading GeckoDriver : OK.");
+  	    }
+  	    catch(IllegalStateException e1) {
+  	    		System.out.println("ERROR : Couldn't locate the GeckoDriver file.");
+  	    }
+ 	    
+  	    driver.manage().window().setSize(new Dimension(1920, 1080)); // manually set the window size to full screen
 	    
 	    
 	    
@@ -69,5 +67,6 @@ public class Pg {
 		/* CLOSE THE BROWSER */
 		//driver.close();
 	}
-
+	
+	
 }
