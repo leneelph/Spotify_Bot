@@ -19,6 +19,9 @@ public class Pg {
 		
 		/* INITIALIZING & INSTANCIATIONS */
 		
+		
+		
+		
 		/* TEST HTTP CONNEXION */
 	    try {
 	        URL testURL = new URL("https://google.fr");
@@ -36,15 +39,19 @@ public class Pg {
 	    }
 	   
 	    
+	    
+	    /* KILL ALL FIREFOX PROCESSES BEFORE LAUNCHING FIREFOX */
+	    while (CheckFirefoxProcess.isFirefoxRunning()) {
+			CheckFirefoxProcess.killFirefoxProcesses();
+		}
+	    
 	    /* SET GECKO DRIVER */
 		System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/geckodriver");
-		
-		
 		
 	    /* LAUNCH FIREFOX PAGE */
 		FirefoxOptions options = new FirefoxOptions();
   	    WebDriver driver = null;
-  		//options.setHeadless(true); // set Firefox headless mode on
+  		options.setHeadless(true); // set Firefox headless mode on
   	    try {
   	    		driver = new FirefoxDriver(options);
  	    		System.out.println("Loading GeckoDriver : OK.");
@@ -54,6 +61,13 @@ public class Pg {
   	    }
  	    
   	    driver.manage().window().setSize(new Dimension(1920, 1080)); // manually set the window size to full screen
+  	    // Confirm FireFox Launch
+	    if (CheckFirefoxProcess.isFirefoxRunning()) {
+	    		System.out.println("Launching Firefox : OK.");
+	    }
+	    else {
+	    		System.out.println("ERROR : Couldn't launch Firefox.");
+	    }
 	    
 	    
 	    
@@ -65,7 +79,11 @@ public class Pg {
 	    
 	    
 		/* CLOSE THE BROWSER */
-		//driver.close();
+		driver.close();
+		// Clear all Firefox Processes
+		while (CheckFirefoxProcess.isFirefoxRunning()) {
+			CheckFirefoxProcess.killFirefoxProcesses();
+		}
 	}
 	
 	
